@@ -18,7 +18,16 @@ public class CourseService {
     }
 
     public List<CourseDTO> getCourses() {
+        return courseRepository.findAll()
+                .stream()
+                .map(CourseMapper.INSTANCE::toDTO)
+                .toList();
+    }
 
-        return courseRepository.findAll().stream().map(CourseMapper.INSTANCE::toDTO).collect(Collectors.toList());
+
+    public CourseDTO addCourse(CourseDTO courseDTO) {
+        Course course  = courseRepository.save(CourseMapper.INSTANCE.toCourse(courseDTO));
+        CourseDTO courseDTO1 = CourseMapper.INSTANCE.toDTO(course);
+        return courseDTO1;
     }
 }

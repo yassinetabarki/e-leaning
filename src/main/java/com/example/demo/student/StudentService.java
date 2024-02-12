@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
     private final StudentDTOMapper studentDTOMapper;
 
 
@@ -28,7 +28,6 @@ public class StudentService {
     }
 
     public void addNewStudent(Student student) {
-//        System.out.println(student);
         Optional<Student> studentEmail = studentRepository.findStudentByEmail(student.getEmail());
 
         if (studentEmail.isPresent()) {

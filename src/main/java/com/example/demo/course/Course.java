@@ -24,14 +24,15 @@ public class Course {
             strategy = GenerationType.UUID,
             generator = "course"
     )
-
     private Long id;
+
     private String name;
 
-    public Course(String name) {
-        this.name = name;
-    }
+    private Double price;
 
+    private String Currency;
+
+    private String Description;
 
     @ManyToMany
     @JoinTable(
@@ -40,4 +41,8 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     private Set<Teacher> teachers;
+
+    public Course(String name) {
+        this.name = name;
+    }
 }

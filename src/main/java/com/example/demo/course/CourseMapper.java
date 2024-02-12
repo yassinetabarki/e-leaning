@@ -12,5 +12,5 @@ public interface CourseMapper {
     @Mapping(source = "name" , target = "courseName")
     CourseDTO toDTO(Course course);
     @Mapping(source = "courseName", target="name")
-    Course toCourse(CourseDTO course);
+    Course toCourse(CourseDTO courseDTO);
 }
