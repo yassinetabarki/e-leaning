@@ -24,6 +24,7 @@ public class Student {
     private LocalDate dob;
     @Transient //
     private Integer age;
+
     public Student() {
     }
 
@@ -73,7 +74,10 @@ public class Student {
     }
 
     public Integer getAge() {
-        return Period.between(dob,LocalDate.now()).getYears();
+        if (dob == null) {
+            return null;
+        }
+        return Period.between(dob, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {

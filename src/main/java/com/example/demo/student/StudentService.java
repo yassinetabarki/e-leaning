@@ -24,8 +24,7 @@ public class StudentService {
     }
 
     public List<StudentDTO> getStudents() {
-        String[] t = {"test", "ters","dss"};
-        return studentRepository.findAll().stream().map(student -> studentDTOMapper.apply(student)).collect(Collectors.toList());
+        return studentRepository.findAll().stream().map(studentDTOMapper).toList();
     }
 
     public void addNewStudent(Student student) {
@@ -45,13 +44,13 @@ public class StudentService {
         ));
 
         if (name != null &&
-                name.length() > 0 &&
+                !name.isEmpty() &&
                 !Objects.equals(student.getName(), name)) {
             student.setName(name);
         }
 
         if (email != null &&
-                email.length() > 0 &&
+                !email.isEmpty() &&
                 !Objects.equals(student.getName(), email)) {
             student.setEmail(email);
         }

@@ -14,12 +14,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class Course {
-    private Long id;
-    private String name;
-    public Course(String name) {
-        this.name = name;
-    }
-
     @Id
     @SequenceGenerator(
             name = "course",
@@ -30,6 +24,14 @@ public class Course {
             strategy = GenerationType.UUID,
             generator = "course"
     )
+
+    private Long id;
+    private String name;
+
+    public Course(String name) {
+        this.name = name;
+    }
+
 
     @ManyToMany
     @JoinTable(
