@@ -18,14 +18,18 @@ public class CourseController {
     }
 
     @GetMapping
-    public List<CourseDTO> getCourses() {
-        return this.service.getCourses();
+    public List<CourseDTO> getCourses(
+            @RequestParam(name = "q") String query
+    ) {
+        var test = query;
+        return this.service.getCourses(query);
     }
 
     @PostMapping
     public ResponseEntity<CourseDTO> store(
             @RequestBody CourseDTO courseDTO
     ) {
+
         CourseDTO course = service.addCourse(courseDTO);
         return new ResponseEntity<CourseDTO>(course, HttpStatus.OK);
     }

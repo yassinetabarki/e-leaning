@@ -17,7 +17,8 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
-    public List<CourseDTO> getCourses() {
+    public List<CourseDTO> getCourses(String query) {
+
         return courseRepository.findAll()
                 .stream()
                 .map(CourseMapper.INSTANCE::toDTO)
