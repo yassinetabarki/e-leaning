@@ -15,5 +15,12 @@ public class CourseDTO {
     @NotEmpty(message = "The full name is required.")
     private String courseName;
 
+    private Double price;
+
+
+    private String currency;
+
+    private String description;
+
     private Set<Teacher> teachers;
 }

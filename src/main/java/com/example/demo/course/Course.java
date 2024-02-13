@@ -30,9 +30,10 @@ public class Course {
 
     private Double price;
 
-    private String Currency;
+    private String currency;
 
-    private String Description;
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
     @ManyToMany
     @JoinTable(
