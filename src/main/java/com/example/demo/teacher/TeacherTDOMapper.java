@@ -1,17 +1,17 @@
 package com.example.demo.teacher;
 
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
-@Service
-public class TeacherTDOMapper implements Function<Teacher, TeacherTDO> {
-    @Override
-    public TeacherTDO apply(Teacher teacher) {
-        return new TeacherTDO(
-                teacher.getId(),
-                teacher.getName(),
-                teacher.getEmail()
-        );
-    }
+@Mapper
+public interface TeacherTDOMapper {
+
+    TeacherTDOMapper INSTANCE = Mappers.getMapper(TeacherTDOMapper.class);
+
+    TeacherTDO toTDO(Teacher teacher);
+
+    Teacher toTeacher(TeacherTDO teacherTDO);
 }

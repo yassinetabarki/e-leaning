@@ -1,9 +1,10 @@
 package com.example.demo.teacher;
 
+import com.example.demo.course.CourseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +22,11 @@ public class TeacherController {
     public List<TeacherTDO> getTeachers() {
 
         return service.getTeachers();
+    }
+
+    @PostMapping
+    public ResponseEntity<TeacherTDO> Store(@RequestBody TeacherTDO teacherTDO) {
+        TeacherTDO teacher = service.addTeacher(teacherTDO);
+        return new ResponseEntity<TeacherTDO>(teacher, HttpStatus.OK);
     }
 }

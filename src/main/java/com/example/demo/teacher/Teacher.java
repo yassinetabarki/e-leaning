@@ -2,11 +2,16 @@ package com.example.demo.teacher;
 
 import com.example.demo.course.Course;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Set;
 
 @Entity
-@Table
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Getter
+@Setter
 public class Teacher {
     @Id
     @SequenceGenerator(
@@ -32,13 +37,6 @@ public class Teacher {
     )
     private Set<Course> courses;
 
-    public Teacher() {
-    }
-
-    public Teacher(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
 
     public Long getId() {
         return id;
