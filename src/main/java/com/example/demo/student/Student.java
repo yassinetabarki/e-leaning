@@ -25,6 +25,8 @@ public class Student {
     @Transient //
     private Integer age;
 
+    protected static String[] searchAbleField = {"name","email"};
+
     public Student() {
     }
 

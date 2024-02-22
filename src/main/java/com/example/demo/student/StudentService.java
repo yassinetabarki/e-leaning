@@ -2,6 +2,7 @@ package com.example.demo.student;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +15,20 @@ import java.util.stream.Collectors;
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
-    private final StudentDTOMapper studentDTOMapper;
 
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, StudentDTOMapper studentDTOMapper) {
+    public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
-        this.studentDTOMapper = studentDTOMapper;
+
     }
 
-    public List<StudentDTO> getStudents() {
-        return studentRepository.findAll().stream().map(studentDTOMapper).toList();
+    public List<StudentDTO> getStudents(String query) {
+        Specification<Student> spec = query != null ? new StudentSpecifications().getFilterSpecifications(query) : null;
+        return studentRepository.findAll(spec)
+                .stream()
+                .map(StudentDTOMapper.INSTANCE::toDTO)
+                .toList();
     }
 
     public void addNewStudent(Student student) {

@@ -2,16 +2,17 @@ package com.example.demo.student;
 
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 import java.time.LocalDate;
 
-public record StudentDTO(
-        Long id,
-        @NotNull(message = "null field")
-        String name,
-        String email,
-        LocalDate dob,
-        Integer age
-) {
+@Data
+public class StudentDTO {
+    private Long id;
+    @NotNull(message = "null field")
+    private String name;
+    private String email;
+    private LocalDate dob;
+    private Integer age;
 
 }

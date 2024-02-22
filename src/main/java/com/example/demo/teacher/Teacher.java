@@ -3,6 +3,8 @@ package com.example.demo.teacher;
 import com.example.demo.course.Course;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.Set;
 
@@ -29,12 +31,13 @@ public class Teacher {
     private String name;
     private String email;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "teacher_course",
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
+    @Fetch(FetchMode.JOIN)
     private Set<Course> courses;
 
 

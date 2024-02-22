@@ -17,8 +17,10 @@ public class StudentController {
     }
 
     @GetMapping
-    public List<StudentDTO> getStudents() {
-        return service.getStudents();
+    public List<StudentDTO> getStudents(
+            @RequestParam(name = "q", required = false) String query
+    ) {
+        return service.getStudents(query);
     }
 
     @PostMapping
