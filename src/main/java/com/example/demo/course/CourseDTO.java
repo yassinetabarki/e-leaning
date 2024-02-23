@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -22,5 +23,5 @@ public class CourseDTO {
 
     private String description;
 
-    private Set<Teacher> teachers;
+    private List<Teacher> teachers;
 }

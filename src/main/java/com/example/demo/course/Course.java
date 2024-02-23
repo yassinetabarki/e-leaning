@@ -1,12 +1,15 @@
 package com.example.demo.course;
 
 import com.example.demo.teacher.Teacher;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,7 +30,7 @@ public class Course {
             generator = "course"
     )
     private Long id;
-
+    @Column(name = "name")
     private String name;
 
     private Double price;
@@ -44,8 +47,9 @@ public class Course {
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "teacher_id")
     )
-    @Fetch(FetchMode.JOIN)
-    private Set<Teacher> teachers;
+//    @Fetch(FetchMode.SUBSELECT)
+    @JsonBackReference
+    private List<Teacher> teachers;
 
     public Course(String name) {
         this.name = name;
